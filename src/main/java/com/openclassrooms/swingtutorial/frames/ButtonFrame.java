@@ -8,23 +8,19 @@ public class ButtonFrame extends JFrame {
     private JButton bouton = new JButton("Mon bouton");
 
     public ButtonFrame() {
-        this.setTitle("Bouton avec BorderLayout");
+        this.setTitle("Buttons with GridLayout");
         this.setSize(300, 300);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         //On définit le layout à utiliser sur le content pane
-        this.setLayout(new BorderLayout());
+        //Trois lignes sur deux colonnes
+        this.setLayout(new GridLayout(3, 2));
         //On ajoute le bouton au content pane de la JFrame
-        //Au centre
-        this.getContentPane().add(new JButton("CENTER"), BorderLayout.CENTER);
-        //Au nord
-        this.getContentPane().add(new JButton("NORTH"), BorderLayout.NORTH);
-        //Au sud
-        this.getContentPane().add(new JButton("SOUTH"), BorderLayout.SOUTH);
-        //À l'ouest
-        this.getContentPane().add(new JButton("WEST"), BorderLayout.WEST);
-        //À l'est
-        this.getContentPane().add(new JButton("EAST"), BorderLayout.EAST);
+        this.getContentPane().add(new JButton("1"));
+        this.getContentPane().add(new JButton("2"));
+        this.getContentPane().add(new JButton("3"));
+        this.getContentPane().add(new JButton("4"));
+        this.getContentPane().add(new JButton("5"));
         this.setVisible(true);
     }
 }
