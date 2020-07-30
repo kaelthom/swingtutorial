@@ -14,7 +14,11 @@ public class ButtonFrame extends JFrame {
         this.setLocationRelativeTo(null);
         //On définit le layout à utiliser sur le content pane
         //Trois lignes sur deux colonnes
-        this.setLayout(new GridLayout(3, 2));
+        GridLayout gl = new GridLayout(3, 2);
+        gl.setHgap(5); //Cinq pixels d'espace entre les colonnes (H comme Horizontal)
+        gl.setVgap(5); //Cinq pixels d'espace entre les lignes (V comme Vertical)
+        //Ou en abrégé : GridLayout gl = new GridLayout(3, 2, 5, 5);
+        this.setLayout(gl);
         //On ajoute le bouton au content pane de la JFrame
         this.getContentPane().add(new JButton("1"));
         this.getContentPane().add(new JButton("2"));
