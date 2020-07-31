@@ -13,6 +13,7 @@ public class AnimationFrame extends JFrame {
     private JButton bouton2 = new JButton("mon bouton 2");
     private JPanel container = new JPanel();
     private JLabel label = new JLabel("Quelle belle animation");
+    private boolean animated = true;
 
     public AnimationFrame() {
         this.setTitle("Animation");
@@ -40,12 +41,18 @@ public class AnimationFrame extends JFrame {
         bouton.addActionListener(new Bouton1Listener());
         bottomPanel.add(bouton);
         bouton2.addActionListener(new Bouton2Listener());
+        updateButtonEnabling();
         bottomPanel.add(bouton2);
         container.add(bottomPanel, BorderLayout.SOUTH);
 
         this.setContentPane(container);
         this.setVisible(true);
         go();
+    }
+
+    private void updateButtonEnabling() {
+        bouton.setEnabled(!animated);
+        bouton2.setEnabled(animated);
     }
 
     private void go() {
@@ -58,7 +65,7 @@ public class AnimationFrame extends JFrame {
 
         //Dans cet exemple, j'utilise une boucle while
         //Vous verrez qu'elle fonctionne très bien
-        while (true) {
+        while (animated) {
             //Si la coordonnée x est inférieure à 1, on avance
             if (x < 1) backX = false;
             //Si la coordonnée x est supérieure à la taille du Panneau moins la taille du rond, on recule
@@ -97,7 +104,10 @@ public class AnimationFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             compteur++;
-            label.setText("Vous avez cliqué " + this.compteur + " fois sur le bouton 1");
+            animated = false;
+            updateButtonEnabling();
+            label.setText("Vous avez cliqué " + this.compteur + " fois sur le bouton 1 et commencé l'animation");
+            go();
         }
     }
 
@@ -107,7 +117,9 @@ public class AnimationFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             compteur2++;
-            label.setText("Vous avez cliqué " + this.compteur2 + " fois sur le bouton 2");
+            animated = false;
+            updateButtonEnabling();
+            label.setText("Vous avez cliqué " + this.compteur2 + " fois sur le bouton 2 et stoppé l'animation");
         }
     }
 }
