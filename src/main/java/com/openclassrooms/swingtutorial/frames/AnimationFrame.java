@@ -1,5 +1,6 @@
 package com.openclassrooms.swingtutorial.frames;
 
+import com.openclassrooms.swingtutorial.buttons.MyButton;
 import com.openclassrooms.swingtutorial.panels.AnimationPanel;
 
 import javax.swing.*;
@@ -7,7 +8,7 @@ import java.awt.*;
 
 public class AnimationFrame extends JFrame {
     private AnimationPanel pan = new AnimationPanel();
-    private JButton bouton = new JButton("mon bouton");
+    private MyButton bouton = new MyButton("mon bouton");
     private JPanel container = new JPanel();
 
     public AnimationFrame() {
