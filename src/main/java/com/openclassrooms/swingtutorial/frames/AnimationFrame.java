@@ -1,6 +1,5 @@
 package com.openclassrooms.swingtutorial.frames;
 
-import com.openclassrooms.swingtutorial.buttons.MyButton;
 import com.openclassrooms.swingtutorial.panels.AnimationPanel;
 
 import javax.swing.*;
@@ -8,12 +7,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AnimationFrame extends JFrame implements ActionListener {
+public class AnimationFrame extends JFrame {
     private AnimationPanel pan = new AnimationPanel();
-    private MyButton bouton = new MyButton("mon bouton");
+    private JButton bouton = new JButton("mon bouton");
+    private JButton bouton2 = new JButton("mon bouton 2");
     private JPanel container = new JPanel();
     private JLabel label = new JLabel("Quelle belle animation");
-    private int compteur = 0;
 
     public AnimationFrame() {
         this.setTitle("Animation");
@@ -36,9 +35,13 @@ public class AnimationFrame extends JFrame implements ActionListener {
 
         container.add(pan, BorderLayout.CENTER);
 
+        JPanel bottomPanel = new JPanel();
         //Nous ajoutons notre fenêtre à la liste des auditeurs de notre bouton
-        bouton.addActionListener(this);
-        container.add(bouton, BorderLayout.SOUTH);
+        bouton.addActionListener(new Bouton1Listener());
+        bottomPanel.add(bouton);
+        bouton2.addActionListener(new Bouton2Listener());
+        bottomPanel.add(bouton2);
+        container.add(bottomPanel, BorderLayout.SOUTH);
 
         this.setContentPane(container);
         this.setVisible(true);
@@ -87,9 +90,24 @@ public class AnimationFrame extends JFrame implements ActionListener {
         }
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        compteur++;
-        label.setText("Vous avez cliqué " + this.compteur + " fois");
+
+    class Bouton1Listener implements ActionListener {
+        private int compteur = 0;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            compteur++;
+            label.setText("Vous avez cliqué " + this.compteur + " fois sur le bouton 1");
+        }
+    }
+
+    class Bouton2Listener implements ActionListener {
+        private int compteur2 = 0;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            compteur2++;
+            label.setText("Vous avez cliqué " + this.compteur2 + " fois sur le bouton 2");
+        }
     }
 }
