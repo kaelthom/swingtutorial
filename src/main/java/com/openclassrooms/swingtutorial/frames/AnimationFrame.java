@@ -5,11 +5,15 @@ import com.openclassrooms.swingtutorial.panels.AnimationPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class AnimationFrame extends JFrame {
+public class AnimationFrame extends JFrame implements ActionListener {
     private AnimationPanel pan = new AnimationPanel();
     private MyButton bouton = new MyButton("mon bouton");
     private JPanel container = new JPanel();
+    private JLabel label = new JLabel("Quelle belle animation");
+    private int compteur = 0;
 
     public AnimationFrame() {
         this.setTitle("Animation");
@@ -18,8 +22,24 @@ public class AnimationFrame extends JFrame {
         this.setLocationRelativeTo(null);
         container.setBackground(Color.white);
         container.setLayout(new BorderLayout());
+
+        //Définition d'une police d'écriture
+        Font police = new Font("Tahoma", Font.BOLD, 16);
+        //On l'applique au JLabel
+        label.setFont(police);
+        //Changement de la couleur du texte
+        label.setForeground(Color.blue);
+        //On modifie l'alignement du texte grâce aux attributs statiques
+        //de la classe JLabel
+        label.setHorizontalAlignment(JLabel.CENTER);
+        container.add(label, BorderLayout.NORTH);
+
         container.add(pan, BorderLayout.CENTER);
+
+        //Nous ajoutons notre fenêtre à la liste des auditeurs de notre bouton
+        bouton.addActionListener(this);
         container.add(bouton, BorderLayout.SOUTH);
+
         this.setContentPane(container);
         this.setVisible(true);
         go();
@@ -65,5 +85,11 @@ public class AnimationFrame extends JFrame {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        compteur++;
+        label.setText("Vous avez cliqué " + this.compteur + " fois");
     }
 }
