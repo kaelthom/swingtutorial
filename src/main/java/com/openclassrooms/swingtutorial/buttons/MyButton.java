@@ -29,7 +29,16 @@ public class MyButton extends JButton implements MouseListener {
         g2d.setPaint(gp);
         g2d.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
         g2d.setColor(Color.black);
-        g2d.drawString(this.name, this.getWidth() / 2 - (this.getWidth() / 2 / 4), (this.getHeight() / 2) + 5);
+
+        //Objet permettant de connaître les propriétés d'une police, dont la taille
+        FontMetrics fm = g2d.getFontMetrics();
+        //Hauteur de la police d'écriture
+        int height = fm.getHeight();
+        //Largeur totale de la chaîne passée en paramètre
+        int width = fm.stringWidth(this.name);
+
+        //On calcule alors la position du texte, et le tour est joué
+        g2d.drawString(this.name, this.getWidth() / 2 - (width / 2), (this.getHeight() / 2) + (height / 4));
     }
 
     public void mouseClicked(MouseEvent event) {
@@ -64,7 +73,7 @@ public class MyButton extends JButton implements MouseListener {
     }
 
     public void mouseReleased(MouseEvent event) {
-        //Nous changeons le fond de notre image pour le orange lorsque nous relâchons le clic avec le fichier fondBoutonHover.png si la souris est toujours sur le bouton
+        //Nous changeons le fond de notre image pour l'orange lorsque nous relâchons le clic avec le fichier fondBoutonHover.png si la souris est toujours sur le bouton
         if ((event.getY() > 0 && event.getY() < this.getHeight()) && (event.getX() > 0 && event.getX() < this.getWidth())) {
             try {
                 img = ImageIO.read(new File("fondBoutonHover.png"));
