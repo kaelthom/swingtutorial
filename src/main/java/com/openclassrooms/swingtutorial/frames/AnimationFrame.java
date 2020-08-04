@@ -8,21 +8,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AnimationFrame extends JFrame {
-    private AnimationPanel pan = new AnimationPanel();
+    AnimationPanel pan = new AnimationPanel();
     private JButton bouton = new JButton("mon bouton");
     private JButton bouton2 = new JButton("mon bouton 2");
+    private JComboBox<String> combo = new JComboBox<>();
     private JPanel container = new JPanel();
     private JLabel label = new JLabel("Quelle belle animation");
     private boolean animated = true;
 
     public AnimationFrame() {
         this.setTitle("Animation");
-        this.setSize(300, 300);
+        this.setSize(400, 300);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         container.setBackground(Color.white);
         container.setLayout(new BorderLayout());
 
+        JPanel topPanel = new JPanel();
         //Définition d'une police d'écriture
         Font police = new Font("Tahoma", Font.BOLD, 16);
         //On l'applique au JLabel
@@ -32,7 +34,14 @@ public class AnimationFrame extends JFrame {
         //On modifie l'alignement du texte grâce aux attributs statiques
         //de la classe JLabel
         label.setHorizontalAlignment(JLabel.CENTER);
-        container.add(label, BorderLayout.NORTH);
+        topPanel.add(label);
+
+        combo.setPreferredSize(new Dimension(100, 20));
+        combo.addItem("Circle");
+        combo.addItem("Rectangle");
+        combo.addActionListener(this.new ItemAction());
+        topPanel.add(combo);
+        container.add(topPanel, BorderLayout.NORTH);
 
         container.add(pan, BorderLayout.CENTER);
 
@@ -126,6 +135,14 @@ public class AnimationFrame extends JFrame {
     class PlayAnimation implements Runnable {
         public void run() {
             go();
+        }
+    }
+
+    class ItemAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            pan.setForm(combo.getSelectedItem().toString());
         }
     }
 }
