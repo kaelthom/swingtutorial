@@ -1,6 +1,5 @@
 package com.openclassrooms.swingtutorial.frames;
 
-import com.openclassrooms.swingtutorial.buttons.MyButton;
 import com.openclassrooms.swingtutorial.panels.AnimationPanel;
 
 import javax.swing.*;
@@ -10,8 +9,8 @@ import java.awt.event.ActionListener;
 
 public class AnimationFrame extends JFrame {
     private AnimationPanel pan = new AnimationPanel();
-    private MyButton bouton = new MyButton("mon bouton");
-    private MyButton bouton2 = new MyButton("mon bouton 2");
+    private JButton bouton = new JButton("mon bouton");
+    private JButton bouton2 = new JButton("mon bouton 2");
     private JPanel container = new JPanel();
     private JLabel label = new JLabel("Quelle belle animation");
     private boolean animated = true;
@@ -105,10 +104,10 @@ public class AnimationFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             compteur++;
-            animated = false;
+            animated = true;
             updateButtonEnabling();
             label.setText("Vous avez cliqué " + this.compteur + " fois sur le bouton 1 et commencé l'animation");
-            go();
+            new Thread(new PlayAnimation()).start();
         }
     }
 
@@ -121,6 +120,12 @@ public class AnimationFrame extends JFrame {
             animated = false;
             updateButtonEnabling();
             label.setText("Vous avez cliqué " + this.compteur2 + " fois sur le bouton 2 et stoppé l'animation");
+        }
+    }
+
+    class PlayAnimation implements Runnable {
+        public void run() {
+            go();
         }
     }
 }
