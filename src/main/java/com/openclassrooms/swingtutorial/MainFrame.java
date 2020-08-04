@@ -9,5 +9,6 @@ public class MainFrame {
         AnimationFrame myFrame = new AnimationFrame();
 //        ButtonFrame buttonFrame = new ButtonFrame();
 //        HorlogeFrame horlogeFrame = new HorlogeFrame();
+//        JCheckBoxFrame jCheckBoxFrame = new JCheckBoxFrame();
     }
 }
