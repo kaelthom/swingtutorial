@@ -89,19 +89,39 @@ public class AnimationFrame extends JFrame {
 
     public class BoutonListener implements ActionListener {
         public void actionPerformed(ActionEvent arg0) {
-            animated = true;
-            t = new Thread(new PlayAnimation());
-            t.start();
-            bouton.setEnabled(false);
-            bouton2.setEnabled(true);
+            JOptionPane jop = new JOptionPane();
+            int option = jop.showConfirmDialog(null,
+                    "Voulez-vous lancer l'animation ?",
+                    "Lancement de l'animation",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+
+            if (option == JOptionPane.OK_OPTION) {
+                animated = true;
+                t = new Thread(new PlayAnimation());
+                t.start();
+                bouton.setEnabled(false);
+                bouton2.setEnabled(true);
+            }
         }
     }
 
     class Bouton2Listener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            animated = false;
-            bouton.setEnabled(true);
-            bouton2.setEnabled(false);
+            JOptionPane jop = new JOptionPane();
+            int option = jop.showConfirmDialog(null,
+                    "Voulez-vous arrêter l'animation ?",
+                    "Arrêt de l'animation",
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+
+            if (option != JOptionPane.NO_OPTION &&
+                    option != JOptionPane.CANCEL_OPTION &&
+                    option != JOptionPane.CLOSED_OPTION) {
+                animated = false;
+                bouton.setEnabled(true);
+                bouton2.setEnabled(false);
+            }
         }
     }
 
