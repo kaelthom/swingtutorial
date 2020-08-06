@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AnimationPanel extends JPanel {
+    //On y ajoute nos deux couleurs
+    private Color couleurForme = Color.red;
+    private Color couleurFond = Color.white;
     private int posX = -50;
     private int posY = -50;
     private int drawSize = 50;
@@ -15,9 +18,9 @@ public class AnimationPanel extends JPanel {
     private int increment = 0;
 
     public void paintComponent(Graphics g) {
-        g.setColor(Color.white);
+        g.setColor(couleurFond);
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
-        g.setColor(Color.red);
+        g.setColor(couleurForme);
         //Si le mode morphing est activé, on peint le morphing
         if (this.morph)
             drawMorph(g);
@@ -30,7 +33,8 @@ public class AnimationPanel extends JPanel {
         if (this.forme.equals("ROND")) {
             g.fillOval(posX, posY, 50, 50);
         }
-        if (this.forme.equals("CARRE")) {
+        //J'ai ajouté :  || this.forme.equals("CARRÉ")
+        if (this.forme.equals("CARRE") || this.forme.equals("CARRÉ")) {
             g.fillRect(posX, posY, 50, 50);
         }
         if (this.forme.equals("TRIANGLE")) {
@@ -78,7 +82,8 @@ public class AnimationPanel extends JPanel {
         if (this.forme.equals("ROND")) {
             g.fillOval(posX, posY, drawSize, drawSize);
         }
-        if (this.forme.equals("CARRE")) {
+        //J'ai ajouté :  || this.forme.equals("CARRÉ")
+        if (this.forme.equals("CARRE") || this.forme.equals("CARRÉ")) {
             g.fillRect(posX, posY, drawSize, drawSize);
         }
         if (this.forme.equals("TRIANGLE")) {
@@ -137,7 +142,7 @@ public class AnimationPanel extends JPanel {
     }
 
     public void setForme(String form) {
-        this.forme = form;
+        this.forme = form.toUpperCase();
     }
 
     public int getPosX() {
@@ -154,5 +159,15 @@ public class AnimationPanel extends JPanel {
 
     public void setPosY(int posY) {
         this.posY = posY;
+    }
+
+    //Méthode qui redéfinit la couleur du fond
+    public void setCouleurFond(Color color) {
+        this.couleurFond = color;
+    }
+
+    //Méthode qui redéfinit la couleur de la forme
+    public void setCouleurForme(Color color) {
+        this.couleurForme = color;
     }
 }
