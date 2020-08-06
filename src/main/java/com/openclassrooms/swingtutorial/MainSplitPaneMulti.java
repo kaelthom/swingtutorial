@@ -34,7 +34,7 @@ public class MainSplitPaneMulti extends JFrame {
         //On place le troisième séparateur
         split3.setDividerLocation(80);
 
-        //On le passe ensuite au content pane de notre objet Fenetre
+        //On le passe ensuite au content pane de notre objet TabbedPanedDynamicFrame
         //placé au centre pour qu'il utilise tout l'espace disponible
         this.getContentPane().add(split3, BorderLayout.CENTER);
         this.setVisible(true);
