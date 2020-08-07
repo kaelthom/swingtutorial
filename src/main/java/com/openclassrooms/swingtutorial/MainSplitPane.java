@@ -26,7 +26,7 @@ public class MainSplitPane extends JFrame {
         split.setDividerSize(25);
         split.setDividerLocation(0.7);
 
-        //On le passe ensuite au content pane de notre objet TabbedPanedDynamicFrame
+        //On le passe ensuite au content pane de notre objet MainTabbedPanedDynamicFrame
         //placé au centre pour qu'il utilise tout l'espace disponible
         this.getContentPane().add(split, BorderLayout.CENTER);
         this.setVisible(true);

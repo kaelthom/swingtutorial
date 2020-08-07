@@ -32,7 +32,7 @@ public class MainDesktopFrame extends JFrame {
 
     class MiniFenetre extends JInternalFrame {
         public MiniFenetre(int nbre) {
-            this.setTitle("Fenetre N°" + nbre);
+            this.setTitle("MainTreeFrame N°" + nbre);
             this.setClosable(true);
             this.setResizable(true);
             this.setSize(150, 80);

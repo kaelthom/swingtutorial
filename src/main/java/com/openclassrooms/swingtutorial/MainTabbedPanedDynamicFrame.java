@@ -7,12 +7,12 @@ import com.openclassrooms.swingtutorial.panels.TabbedPanePanel;
 import javax.swing.*;
 import java.awt.*;
 
-public class TabbedPanedDynamicFrame extends JFrame {
+public class MainTabbedPanedDynamicFrame extends JFrame {
     private JTabbedPane onglet;
     //Compteur pour le nombre d'onglets
     private int nbreTab = 0;
 
-    public TabbedPanedDynamicFrame() {
+    public MainTabbedPanedDynamicFrame() {
         this.setLocationRelativeTo(null);
         this.setTitle("Gérer vos conteneurs");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,6 +52,6 @@ public class TabbedPanedDynamicFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-        new TabbedPanedDynamicFrame();
+        new MainTabbedPanedDynamicFrame();
     }
 }
